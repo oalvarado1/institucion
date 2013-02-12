@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang=’es’>
+<head>
+    <title>Usuarios Registrados</title>
+    <meta charset=’utf-8’>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <nav>
+		<ul>
+			<li><a href="/">Inicio</a></li>
+			<li><a href="/usuarios">Usuarios Registrados</a></li>
+			<li><a href="/universidades">Universidades</a></li>
+			<li><a href="/sobre">Acerca de</a></li>
+		</ul>
+	</nav>
+
+</head>
+<body> 
+    <h2>Colaboradores</h2>
+    <p>Usuarios Registrados:</p>
+    <ul>
+    	{% for dato in usuarios %}
+    	<li>
+    		<strong>{{dato.username}}</strong> : <em>{{dato.email}}</em>
+            <ul>
+                {% for item in universidades %}
+                    {% if item.usuarios == dato %}
+                        <li>
+                            {{item}}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+    	</li>
+    	{% endfor %}
+    </ul>
+</body>
+</html>

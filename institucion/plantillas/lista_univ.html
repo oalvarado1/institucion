@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang=’es’>
+<head>
+    <title>Universidades del Mundo</title>
+    <meta charset=’utf-8’>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <style type="text/css">
+        table {
+            width: 90%;
+            border: 1px solid #000;
+        }
+        tr, td {
+            width: 20%;
+            text-align: center;
+            vertical-align: left;
+            border: 1px solid #000;
+            border-collapse: collapse;
+            padding: 0.3em;
+        }
+        tr {
+            background: #eee;
+        }
+    </style>
+</head>
+<body> 
+    <h1>Materias</h1>
+    <table class="table table-bordered">
+            <td><strong>Nombre</strong></td>
+            <td><strong>Continente</strong></td>
+            <td><strong>País</strong></td>
+            <td><strong>Ciudad</strong></td>
+            <td><strong>Idioma</strong></td>
+            <td><strong>Url</strong></td>
+    </table>
+    
+    {% for elemento in lista %}
+    <table class="table table-bordered">
+        <tr>
+            <td>{{elemento.nombre}}</td>
+            <td>{{elemento.continente}}</td>
+            <td>{{elemento.pais}}</td>
+            <td>{{elemento.ciudad}}</td>
+            <td>{{elemento.idioma}}</td>
+            <td>{{elemento.url}}</td>
+        </tr>
+    </table>
+    {% endfor %}
+</body>
+</html>
+
