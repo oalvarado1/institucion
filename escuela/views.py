@@ -36,6 +36,9 @@ def detalle_universidad(request, id_universidad):
     # dato = get_object_or_404(Continente, pk=id_continentes)
     return render_to_response('universidad.html',{'universidad':dato},context_instance=RequestContext(request))
 
+def comentario(request):
+    return render_to_response('comentario.html',context_instance=RequestContext(request))
+
 def contacto(request):
     if request.method=='POST':
         formulario = ContactoForm(request.POST)
@@ -49,6 +52,8 @@ def contacto(request):
     else:
         formulario = ContactoForm()
     return render_to_response('contactoform.html',{'formulario':formulario}, context_instance=RequestContext(request))
+
+# def comentario(request):
 
 def nueva_universidad(request):
     if request.method=='POST':

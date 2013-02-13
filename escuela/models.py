@@ -32,4 +32,3 @@ class Universidad(models.Model):
 
 	def __unicode__(self):
 		return self.nombre_univ
-

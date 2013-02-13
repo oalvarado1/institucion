@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<style type="text/css">
+	#advertencia{
+		display: none;
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="hero-unit">
+			<div class="page-header">
+				<h1>Comentarios</h1>
+				<hr>
+			</div>
+			<nav>
+		        <ul id='menu' >
+		          <li><i class="icon-home"></i><a href='/inicio'>Inicio</a></li>
+		          <li><i class="icon-user"></i><a href='/usuarios'>Usuarios Registrados</a></li>
+		          <li><i class="icon-ok"></i><a href='/universidades'>Universidades Registradas</a></li>
+		          <li><i class="icon-info-sign"></i><a href='/sobre'>Acerca de</a></li>
+		          <li><i class="icon-envelope"></i><a href='/contacto'>Contáctanos</a></li>
+		          <li><i class="icon-pencil"></i><a href='/comentario'>Comentarios</a></li>
+		          <li><i class="icon-remove"></i><a href='/cerrar'>Salir</a></li>
+		        </ul>
+     		</nav>
+		</div>
+
+			<h3>Comentario</h3>
+			<form action=""><label for="comentario"></label>
+				<span id ="advertencia">Ingresar Comentario..!!</span>
+				<textarea name="" id="comentario" cols="30" rows="5"></textarea>
+				<a href="#" onclick="comentar()">Enviar Comentario</a>
+			</form>
+
+			<!-- COMENTARIOS EN HTML -->
+			<div class="weel" id="comentarios">
+				<p class="alert alert-error">Información de vital importancia..</p>	
+			</div>
+	</div>
+
+	<script type="text/javascript">
+		var div_comentarios = document.getElementById('comentarios');
+
+		function comentar(){
+			//funcion para agregar p al div comentarios
+			//1. obtengo el textarea donde escribo el comentario
+			var textarea = document.getElementById('comentario');
+			
+			//2. obtener el texto ingresado en el textarea
+			comentario = textarea.value;
+
+			if (comentario != ''){
+
+				var adv = document.getElementById('advertencia');
+				adv.style.display = 'none';
+
+				//3. creo el elemento p	
+				var p = document.createElement('p');
+				
+				//4. crear el textContent del elemento p anterior
+				var texto = document.createTextNode(comentario);
+				
+				//5. asociar el textContent con el p
+				p.appendChild(texto);
+				
+				//6. modificar el atrr class del elemento p
+				p.className = 'alert alert-error';
+				
+				//7. agregar el comentario al div_comentarios
+				div_comentarios.appendChild(p);
+
+				//8. Limpiar el textarea
+				textarea.value = ' ';
+
+				//console.log(comentario);
+			}else{
+				var adv = document.getElementById('advertencia');
+				adv.style.display = 'block';
+			}
+		}
+	</script>
+
+</body>
+</html>

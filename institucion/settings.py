@@ -6,7 +6,7 @@
 import os
 RUTA_PROYECTO = os.path.dirname(os.path.realpath(__file__))
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -56,7 +56,7 @@ MEDIA_ROOT = os.path.join(RUTA_PROYECTO,'carga')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = 'http://localhost:90/media/'
+MEDIA_URL = 'http://127.0.0.1:8000/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -66,7 +66,7 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = 'http://localhost:90/static/'
+STATIC_URL = 'http://127.0.0.1:8000/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
