@@ -36,10 +36,10 @@
 {% block contenido %}
 <a href="/universidad/nueva">Agregar una Universidad</a>
 <br><br>
-    <table class="table table-hover table-bordered table-striped table-condensed">
-            <td><strong>Nombre</strong></td>
-            <td><strong>URL</strong></td>
-            <tr>
+<table class="table table-hover table-bordered table-striped table-condensed">
+        <td><strong>Nombre</strong></td>
+        <tr>
+            <div class='post'>
                 <td>
                     {% for elemento in datos %}
                     <ul>
@@ -54,6 +54,25 @@
                     </ul>
                     {% endfor %}
                 </td>
-            </tr>
-    </table>
+                <td>
+                    <a href="#">Eliminar</a>
+                </td>
+            </div>
+        </tr>
+</table>
+{% endblock %}
+
+{% block script %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            console.log('jQuery ready!');
+
+            $('div.post a').click(function(ev){
+                ev.preventDefault();
+                $(this).parents('div').remove();
+            });
+
+        });
+    </script>
 {% endblock %}

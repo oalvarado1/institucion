@@ -1,0 +1,17 @@
+{
+	"name": "institucion",
+	"title": "Institucion",
+	"description": "Portal de las Universidades del Mundo",
+	"version": "2.0",
+	"author": {
+		"name": "Oswaldo Alvarado Hidalgo",
+		"name": "Jonathan Cortéz Villa",
+		"url": "https://github.com/oalvarado1/institucion/AUTHORS.txt"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/oalvarado1/institucion.git"
+	},
+	"keywords": []
+}
+
