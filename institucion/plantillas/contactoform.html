@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block titulo %}Contáctanos{% endblock %}
+{% block encabezado %} 
+	<h1>Comunícate con nosotros</h1>
+{% endblock %}
+{% block contenido %}
+	<form id='formulario' method='post' action=''>{% csrf_token %}
+		{{formulario.as_p}}
+		<p>
+			<input type='submit' class="btn btn-primary" value='Confirmar'/>
+		</p>
+	</form>
+{% endblock %}

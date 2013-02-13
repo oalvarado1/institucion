@@ -1,0 +1,35 @@
+/* algunos ejemplos con CSS */
+
+.hero-unit {
+    background-color: #EEEEEE;
+    border-radius: 3px 3px 3px 3px;
+    color: black;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 10px;
+    margin-bottom: 10px;
+    padding: 60px;
+}
+body, header, footer, div, h1, h2, ul, li, a { 
+	margin:0; padding:0;
+}
+header {
+	background-color:#008500;
+	color:black;
+}
+nav ul li a{
+	text-decoration:none;
+	color:black;
+	margin:10px;
+}
+.activo { 
+  font-weight: bold; 
+
+}
+.impar { 
+	background-color:#90EE90; 
+}
+.par { 
+	background-color:#5ACC5A; 
+}
+

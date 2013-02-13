@@ -1,24 +1,24 @@
 from django.conf.urls import patterns, include, url
 
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'institucion.views.home', name='home'),
-    # url(r'^institucion/', include('institucion.foo.urls')),
     
-    url(r'^$','escuela.views.inicio'),
+    url(r'^$','escuela.views.ingresar'),
+    url(r'^inicio/$','escuela.views.inicio'),
     url(r'^sobre/$','escuela.views.sobre'),
     url(r'^usuarios/$','escuela.views.usuarios'),
-    
-    # url(r'^$','escuela.views.lista_univ'),
-        
-    # Uncomment the admin/doc line below to enable admin documentation:
+    url(r'^usuario/nuevo$','escuela.views.nuevo_usuario'),
+    url(r'^universidades/$','escuela.views.lista_universidades'),
+    url(r'^universidad/(?P<id_universidad>\d+)$','escuela.views.detalle_universidad'),
+    url(r'^contacto/$','escuela.views.contacto'),
+    url(r'^universidad/nueva/$','escuela.views.nueva_universidad'),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^privado/$','escuela.views.privado'),
+    url(r'^cerrar/$','escuela.views.cerrar'),
+    
+       
 )

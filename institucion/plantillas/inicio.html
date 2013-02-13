@@ -1,29 +1,23 @@
-<!DOCTYPE html>
-<html lang=’es’>
-<head>
-    <title>Universidades del Mundo</title>
-    <meta charset=’utf-8’>
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-    
-    <nav>
-		<ul>
-			<li><a href="/">Inicio</a></li>
-			<li><a href="/usuarios">Usuarios Registrados</a></li>
-			<li><a href="/universidades">Universidades</a></li>
-			<li><a href="/sobre">Acerca de</a></li>
-		</ul>
-	</nav>
+{% extends 'base.html' %}
 
-</head>
-<body> 
-    <h2>Universidades del Mundo</h2>
-    <p>Actualmente tenemos registradas las siguientes universidades:</p>
-    <ul>
-    	{% for elemento in universidades %}
-    	<li>
-    		<strong>{{elemento.nombre}}</strong> , {{elemento.ciudad}} - {{elemento.pais}}
-    	</li>
-    	{% endfor %}
+{% block titulo %} Inicio {% endblock %}
+
+{% block encabezado %} 
+    <h1>Universidades del Mundo</h1>
+{% endblock %}
+
+{% block contenido %}
+  <p>
+      Actualmente tenemos registradas: 
+     {% with total=universidades.count %} 
+        {{total}} universidad{{total|pluralize}}
+     {% endwith %}
+  </p>
+    <ul>        
+      {% for elemento in universidades %}
+      <li class="{% cycle 'impar' 'par' %}">{{elemento.nombre_univ|title}}</li>
+      {% empty %}
+      <li>No hay universidades registradas aún.</li>
+      {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
