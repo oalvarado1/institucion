@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+  <meta charset='utf-8'>
+  <link rel='stylesheet' href='{{STATIC_URL}}css/base.css'>
+  <link rel='shortcut icon' href='{{STATIC_URL}}img/icono.png'>
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  {% block style_css %}{% endblock %}
+  <script src='{{STATIC_URL}}js/jquery-1.7.2.min.js'></script>
+  <script src='{{STATIC_URL}}js/demo.js'></script>
+</head>
+<body>
+	<header>
+		<div class="hero-unit">
+			{% block titulo %} 500 {% endblock %}
+			{% block style_css %}
+				<link href='http://127.0.0.1:90/static/css/base.css' rel='stylesheet'>
+				<link rel='shortcut icon' href='http://127.0.0.1:90/img/icono.png'>
+			{% endblock %}
+			{% block encabezado %} 
+				<h1>Recetario :( </h1>
+			{% endblock %}
+
+			{% block contenido %}
+			  <h1>Lo sentimos nuestro servidor se quedo dormido, hacemos todos los esfuerzos
+			   por despertarlo. Un poquito de paciencia. </h1>
+			  <p>
+			  	<img src='http://127.0.0.1:90/static/img/leono.jpg'>
+			  </p>
+			{% endblock %}
+		</div>
+   	</header>
+	<footer>
+		<p>Realizado por OJ &copy;2013</p>
+	</footer>
+</body>
+</html>
+

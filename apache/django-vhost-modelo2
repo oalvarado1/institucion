@@ -1,23 +1,23 @@
 <VirtualHost *:90>
 
-    WSGIScriptAlias / /home/sergio/code/recetario_mdw/recetario/recetario/wsgi.py
+    WSGIScriptAlias / /home/oswaldo/proyecto/institucion/institucion/wsgi.py
 
-    Alias /static/ /home/sergio/code/recetario_mdw/recetario/recetario/static/
-    Alias /media/ /home/sergio/code/recetario_mdw/recetario/recetario/carga/
+    Alias /static/ /home/oswaldo/proyecto/institucion/institucion/static/
+    Alias /media/ /home/oswaldo/proyecto/institucion/institucion/carga/
 
-    <Directory /home/sergio/code/recetario_mdw/recetario>
+    <Directory /home/oswaldo/proyecto/institucion>
     <Files wsgi.py>
     Order deny,allow
     Allow from all
     </Files>
     </Directory>
 
-    <Directory /home/sergio/code/recetario_mdw/recetario/recetario/static/>
+    <Directory /home/oswaldo/proyecto/institucion/institucion/static/>
     Order deny,allow
     Allow from all
     </Directory>
 
-    <Directory /home/sergio/code/recetario_mdw/recetario/recetario/carga/>
+    <Directory //home/oswaldo/proyecto/institucion/institucion/carga/>
     Order deny,allow
     Allow from all
     </Directory>
