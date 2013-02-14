@@ -1,10 +1,10 @@
 #encoding:utf-8
-
 # Django settings for institucion project.
 
 # Identificando la ruta del proyecto
 import os
 RUTA_PROYECTO = os.path.dirname(os.path.realpath(__file__))
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -34,7 +34,7 @@ TIME_ZONE = 'America/Guayaquil'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'es-EC'
+LANGUAGE_CODE = 'es-EC (Spanish)'
 
 SITE_ID = 1
 
@@ -158,7 +158,6 @@ LOGGING = {
         },
     }
 }
-
 
 #Configuraciones para enviar mensajes usando gmail
 EMAIL_USE_TLS = True

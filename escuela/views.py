@@ -1,6 +1,6 @@
 
 from escuela.models import Universidad, Pais, Continente
-from escuela.forms import UniversidadForm, PaisForm, ContinenteForm, ContactoForm
+from escuela.forms import UniversidadForm, ContactoForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
@@ -9,22 +9,21 @@ from django.core.mail import EmailMessage
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+#from django.core import serializers
+from django.http import  Http404
+from django.utils import simplejson as json
 
 def sobre(request):
 	return render_to_response('sobre.html', context_instance=RequestContext(request))
 
 def inicio(request):
     universidades = Universidad.objects.all()
-    pais = Pais.objects.all()
-    continente = Continente.objects.all()
-    return render_to_response('inicio.html',{'universidades':universidades,'pais':pais,'continente':continente}, context_instance=RequestContext(request))
+    return render_to_response('inicio.html',{'universidades':universidades}, context_instance=RequestContext(request))
  
 def usuarios(request):
     usuarios = User.objects.all()
     universidades = Universidad.objects.all()
-    pais = Pais.objects.all()
-    continente = Continente.objects.all() 
-    return render_to_response('usuarios.html',{'usuarios':usuarios,'universidades':universidades,'pais':pais,'continente':continente}, context_instance=RequestContext(request))
+    return render_to_response('usuarios.html',{'usuarios':usuarios,'universidades':universidades}, context_instance=RequestContext(request))
 
 def lista_universidades(request):
     universidades = Universidad.objects.all()
@@ -32,8 +31,6 @@ def lista_universidades(request):
 
 def detalle_universidad(request, id_universidad):
     dato = get_object_or_404(Universidad, pk=id_universidad)
-    # dato = get_object_or_404(Pais, pk=id_paises)
-    # dato = get_object_or_404(Continente, pk=id_continentes)
     return render_to_response('universidad.html',{'universidad':dato},context_instance=RequestContext(request))
 
 def comentario(request):
@@ -53,17 +50,37 @@ def contacto(request):
         formulario = ContactoForm()
     return render_to_response('contactoform.html',{'formulario':formulario}, context_instance=RequestContext(request))
 
-# def comentario(request):
+def gestion(request):
+    universidades = Universidad.objects.all()
+    return render_to_response('index.html',{'universidades':universidades},context_instance=RequestContext(request))
 
+#agregar_universidad
 def nueva_universidad(request):
-    if request.method=='POST':
+    formulario = UniversidadForm()
+    return render_to_response("nueva_universidad.html",{'formulario':formulario},context_instance=RequestContext(request))
+
+#agregar_universidad_ajax
+def nueva_universidad_ajax(request):
+    if request.is_ajax() and request.method == 'POST':
         formulario = UniversidadForm(request.POST, request.FILES)
+        errores = ''
+        exito = False
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/universidades')
+            exito = True
+        else:
+            errores = formulario.errors
+        response = {'exito':exito, 'errores':errores}
+        return HttpResponse(json.dumps(response), mimetype="application/json")
     else:
-        formulario = UniversidadForm()
-    return render_to_response('universidadform.html',{'formulario':formulario}, context_instance=RequestContext(request))
+        raise Http404
+
+def consulta(request):
+    consulta = request.GET.get('q', '') 
+    if consulta:         
+        results=Universidad.objects.filter(nombre=consulta).order_by('id')
+        return render_to_response("inicio.html", { "results": results,"consulta": consulta})  
+    return render_to_response("inicio.html", { "results": [],"consulta": consulta})           
 
 def nuevo_usuario(request):
     if request.method=='POST':
@@ -74,6 +91,40 @@ def nuevo_usuario(request):
     else:
         formulario = UserCreationForm()
     return render_to_response('nuevousuario.html',{'formulario':formulario}, context_instance=RequestContext(request))
+
+def eliminar(request,id_universidad):
+    universidad = Universidad.objects.get(pk=id_universidad)
+    universidad.delete()
+    return HttpResponseRedirect("/")
+
+def editar(request,id_universidad):
+    universidad = Universidad.objects.get(pk=id_universidad)
+    formulario = UniversidadForm(instance=universidad)
+    return render_to_response("editar_universidad.html",{'formulario':formulario},context_instance=RequestContext(request))
+
+def editar_ajax(request):
+    if request.is_ajax() and request.method == 'POST':
+        universidad = Universidad.objects.get(pk=request.POST['id_universidad'])
+        formulario = UniversidadForm(request.POST, request.FILES, instance=universidad)
+        errores = ''
+        exito = False
+        if formulario.is_valid():
+            formulario.save()
+            exito = True
+        else:
+            errores = formulario.errores
+        response = {'exito':exito, 'errores':errores}
+        return HttpResponse(json.dumps(response), mimetype="application/json")
+    else:
+        raise Http404
+
+def combo(request):
+    query = request.GET.get('q', '') 
+    elementos= Pais.objects.all()
+    if query:
+        results=Universidad.objects.filter(Pais=query)
+        return render_to_response("consulta_combo.html",{"results": results,"query": query,"elementos": elementos}, context_instance=RequestContext(request) )
+    return render_to_response("consulta_combo.html",{"results": elementos,"query":  query,"elementos": elementos}, context_instance=RequestContext(request))         
 
 def ingresar(request):
     if not request.user.is_anonymous():

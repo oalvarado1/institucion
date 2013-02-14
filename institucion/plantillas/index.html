@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %} CRUD {% endblock titulo %}
+
+{% block contenido %}
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th><h3>Nombre</h3></th>
+			<th><h3>URL</h3></th>
+			<th><h3>Continente</h3></th>
+			<th><h3>País</h3></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<a href="{% url escuela.views.nueva_universidad %}" class="btn btn-primary">Agregar una nueva Universidad</a>
+		{% for universidad in universidades %}
+			
+			<tr>
+				<td>{{universidad.nombre_univ}}</td>
+				<td>{{universidad.pagina_web_univ}}</td>
+				<td>{{universidad.continente}}</td>
+				<td>{{universidad.pais}}</td>
+
+				<td>
+					<a href="{% url escuela.views.editar universidad.id %}" class="btn btn-inverse">Editar</a>
+					<a href="{% url escuela.views.eliminar universidad.id %}" class="btn btn-warning">Eliminar</a>
+				</td>
+			</tr>
+		{% empty %}
+			<tr>
+				<td colspan="4">No hay universidades registrados</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock contenido %}

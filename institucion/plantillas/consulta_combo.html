@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% include "nav.html" %}
+{% block title %}Consulta{% endblock %}
+{% block contenido %}
+<div id="resultado">
+{% block encabezado %}<h1>Búsqueda filtrada por País</h1>{% endblock%}
+<form class='estiloform' name='formulario'  action=""  >
+	<div><label for="q">Buscar: </label></div>
+	<SELECT NAME="q"  onChange="ConsultaFiltrado('http://localhost:8000/combo/','resultado','Vacios'); return false"> 
+	<OPTION VALUE= "" >Seleccione</OPTION> 
+	{% for Pais in elementos %}
+		<option value="{{Pais.id}}">{{Pais.nombre_pais}}</option>
+	{% endfor %}
+
+	</SELECT>	
+		<div><input type='submit' value='Obtener' class="btn btn-primary" onclick="ConsultaFiltrado(); return false"></div>
+
+{% if query %}
+	<h2>Resultados para "{{ query|escape }}":</h2>
+	{% if results %}
+		<table id='tabla'>
+			<tr>
+				<td>Nombre</td>
+				<td>URL</td>
+				<td>Continente</td>
+				<td>País</td>
+			</tr>
+		{% for universidad in results %}				
+			<tr>
+				<td>{{universidad.nombre_univ|upper}}</td>
+				<td><a href="{{universidad.pagina_web_univ}}" target="_blank">{{universidad.pagina_web_univ}}</a></td>
+				<td>{{universidad.Continente|upper}}</td>
+				<td>{{universidad.Pais|upper}}</td></tr>					
+		{% endfor %}
+		</table>	
+	{% else %}
+		<div class="mensaje" align="justify">No hay resultados</div>
+	{% endif %}	
+{% endif %}
+</form>
+<div id=Vacios align="center" ></div>
+{% endblock %}
+</div> 

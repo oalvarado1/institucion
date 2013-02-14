@@ -11,6 +11,7 @@
   <script src='{{STATIC_URL}}js/demo.js'></script>
 </head>
 <body>
+	{% include "nav.html" %}
 	<header>
     	<div class="hero-unit">
     		{% block encabezado %}
@@ -24,7 +25,6 @@
 	     		<table>{{formulario}}</table>
 	     		<p><input type='submit' class="btn btn-primary" value='Ingresar'/></p>
 	     	</form>
-
 	    </div>
 	</header>
 	<footer>

@@ -3,12 +3,12 @@
 {% block titulo %} Usuarios Registrados {% endblock %}
 
 {% block encabezado %} 
+{% include "nav1.html" %}
     <h1>Colaboradores</h1>
 {% endblock %}
 
 {% block contenido %}
-<a href="/usuario/nuevo">Agregar Nuevo Usuario</a>
-<br><br>
+
 <ul>
     {% for dato in usuarios %}
     <li>{{dato.username|capfirst}} - <em>{{dato.email}}</em>
@@ -18,7 +18,7 @@
                     <li>{{item}}</li>
                 {% endif %}
             {% empty %}
-                <li>Este usuario aún no ha registrado recetas.</li>
+                <li>Este usuario aún no ha registrado universidades.</li>
             {% endfor %}
         </ul>
     </li>

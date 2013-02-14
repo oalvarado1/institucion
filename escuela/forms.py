@@ -10,11 +10,3 @@ class ContactoForm(forms.Form):
 class UniversidadForm(ModelForm):
     class Meta:
         model = Universidad
-
-class PaisForm(ModelForm):
-    class Meta:
-        model = Pais
-
-class ContinenteForm(ModelForm):
-    class Meta:
-        model = Continente

@@ -3,7 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title></title>
-<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+	<link rel='stylesheet' href='{{STATIC_URL}}css/base.css'>
+	<link rel='shortcut icon' href='{{STATIC_URL}}img/icono.png'>
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+	{% block style_css %}{% endblock %}
+	<script src='{{STATIC_URL}}js/jquery-1.7.2.min.js'></script>
+	<script src='{{STATIC_URL}}js/demo.js'></script>
+
 <style type="text/css">
 	#advertencia{
 		display: none;
@@ -20,38 +26,29 @@
 </style>
 </head>
 <body>
+	{% include "nav.html" %}
 	<div class="container">
 		<div class="hero-unit">
 			<div class="page-header">
 				<h1>Comentarios</h1>
 				<hr>
+				<h4>Dílo en voz alta...!!</h4>
 			</div>
-			<nav>
-		        <ul id='menu' >
-		          <li><i class="icon-home"></i><a href='/inicio'>Inicio</a></li>
-		          <li><i class="icon-user"></i><a href='/usuarios'>Usuarios Registrados</a></li>
-		          <li><i class="icon-ok"></i><a href='/universidades'>Universidades Registradas</a></li>
-		          <li><i class="icon-info-sign"></i><a href='/sobre'>Acerca de</a></li>
-		          <li><i class="icon-envelope"></i><a href='/contacto'>Contáctanos</a></li>
-		          <li><i class="icon-pencil"></i><a href='/comentario'>Comentarios</a></li>
-		          <li><i class="icon-remove"></i><a href='/cerrar'>Salir</a></li>
-		        </ul>
-     		</nav>
 		</div>
 
-			<h3>Comentario</h3>
-			<form action=""><label for="comentario"></label>
-				<span id ="advertencia">Ingresar Comentario..!!</span>
-				<textarea name="" id="comentario" cols="30" rows="5"></textarea>
-				<a href="#" onclick="comentar()">Enviar Comentario</a>
-			</form>
+		<h3>Comentario</h3>
+		<form action=""><label for="comentario"></label>
+			<span id ="advertencia">Ingresar Comentario..!!</span>
+			<textarea name="" id="comentario" cols="30" rows="5"></textarea>
+			<a href="#" onclick="comentar()">Enviar Comentario</a>
+		</form>
 
-			<!-- COMENTARIOS EN HTML -->
-			<div class="weel" id="comentarios">
-				<p class="alert alert-error">
-					Información de vital importancia..
-				</p>	
-			</div>
+		<!-- COMENTARIOS EN HTML -->
+		<div class="weel" id="comentarios">
+			<p class="alert alert-error">
+				Información de vital importancia..
+			</p>	
+		</div>
 	</div>
 
 	<script type="text/javascript">
